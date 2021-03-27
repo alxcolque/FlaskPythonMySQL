@@ -1,0 +1,26 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<div class="card-header">
+    Editar Materia
+</div>
+<div class="card card-body">
+    <form action="/actualizar/{{materia.0}}" method="POST">
+        <div class="input-group mb-3">
+            <input class="form-control" type="text" name="materia" placeholder="Materia" value="{{materia.1}}">
+        </div>
+        <div class="input-group mb-3">
+            <input class="form-control" type="text" name="sigla" placeholder="Sigla" value="{{materia.2}}">
+        </div>
+        <div class="input-group mb-3">
+            <input class="form-control" type="text" name="descripcion" placeholder="Descripcion" value="{{materia.3}}">
+        </div>
+        
+        <button class="btn btn-success form-control btn-block" type="submit">
+            Actualizar
+        </button>
+    </form>
+</div>
+
+{% endblock %}
+                                    

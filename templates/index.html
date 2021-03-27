@@ -1,0 +1,76 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<div class="row">
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Hey!</strong> {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
+    {% endfor%}
+    {% endif %}
+    {% endwith%}
+
+    <div class="col-md-5 container-fluid">
+        <div class="card mt-3 text-white bg-dark mb-3">
+            <div class="card-header">
+                Insertar Nuevo
+            </div>
+            <div class="card card-body">
+                <form action="crear_materia" method="POST">
+                    <div class="input-group mb-3">
+                        <input class="form-control" type="text" name="materia" placeholder="Materia">
+                    </div>
+                    <div class="input-group mb-3">
+                        <input class="form-control" type="text" name="sigla" placeholder="Sigla">
+                    </div>
+                    <div class="input-group mb-3">
+                        <input class="form-control" type="text" name="descripcion" placeholder="Descripcion">
+                    </div>
+
+                    <button class="btn btn-primary form-control " type="submit">
+                        Registrar
+                    </button>
+                    
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="card mt-3 ">
+        <div class="row">
+            {% for materia in materias %}
+            <div class="col-md-3 mt-3">
+                <div class="card border-primary">
+                    <div class="card-header">
+                        {{ materia.1 }}
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ materia.2 }}</h5>
+                        <p class="card-text">{{ materia.3 }}</p>
+                        <div class="center-block">
+                            <!-- aria-label="..." on the control -->
+
+                            <a href="/editar/{{materia.0}}" class="btn btn-warning btn-sm">Editar</a>
+                            <a href="/eliminar/{{materia.0}}" class="btn btn-danger btn-delete btn-sm">Eliminar</a>
+                        </div>
+                        
+                    </div>
+
+                </div>
+            </div>
+
+            {% endfor%}
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+                                    
